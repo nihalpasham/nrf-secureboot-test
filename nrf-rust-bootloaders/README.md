@@ -20,6 +20,7 @@
     - Compile both projects separately and flash the bootloader according to the memory layout specified in its `memory.x` file. 
     - Then flash the firmware image. It'll be loaded into memory at the memory offset 0x8000.
     - Upon reset, the board should run the bootloader, verify blinky firmware and jump to address 0x8000, where it loops over a blinking LED.
+    - LED blinky application is the examples folder of `nrf52840-blinky-app' project. 
     
 **Signatures:**
  - There is a signatures folder that contains python scripts to generate ECC keys (private and public) and sign test firmware.
@@ -28,3 +29,4 @@
    - `pyocd flash -t nrf52840 --base-address 0x82d0 .\REAL_raw64byte_sig_gen_from_openssl.bin`
  - I've experiemented with 2 options pyECDSA and pyOpenSSL (just as a double check) and both methods should work when generating signatures.
  - Note: OpenSSL generated signatures need some extra formatting. We'll need to extract the raw ECC signature (r + s) values from OpenSSL's DER formatted signature. (pyopenssl folder has 2 examples - use the one with `REAL suffix` for a quick test).
+
