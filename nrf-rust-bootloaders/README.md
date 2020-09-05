@@ -22,9 +22,9 @@
     - Upon reset, the board should run the bootloader, verify blinky firmware and jump to address 0x8000, where it loops over a blinking LED.
     
 **Signatures:**
-  - There is a signatures folder that contains python scripts to generate ECC keys (private and public) and sign test firmware.
-  - We use the private key and final build artefact `XX-blinky.bin` (stored in the examples folder of target directory) to generate a firmware signature. 
-  - Finally, flash the signature generated onto the board at the address 0x82d0 using pyocd (or OpenOCD if you're comfortable with it). 
-    - `pyocd flash -t nrf52840 --base-address 0x82d0 .\REAL_raw64byte_sig_gen_from_openssl.bin` 
-  - I've experiemented with 2 options pyECDSA and pyOpenSSL (just as a double check) and both methods should work when generating signatures.
-  - Note: OpenSSL generated signatures need some extra formatting. We'll need to extract the raw ECC signature (r + s) values from OpenSSL's DER formatted signature. (pyopenssl folder has 2 examples - use the one with `REAL suffix` for a quick test).
+ - There is a signatures folder that contains python scripts to generate ECC keys (private and public) and sign test firmware.
+ - We use the private key and final build artefact `XX-blinky.bin` (stored in the examples folder of target directory) to generate a firmware signature. 
+ - Finally, flash the signature generated onto the board at the address 0x82d0 using pyocd (or OpenOCD if you're comfortable with it). 
+   - `pyocd flash -t nrf52840 --base-address 0x82d0 .\REAL_raw64byte_sig_gen_from_openssl.bin` 
+ - I've experiemented with 2 options pyECDSA and pyOpenSSL (just as a double check) and both methods should work when generating signatures.
+ - Note: OpenSSL generated signatures need some extra formatting. We'll need to extract the raw ECC signature (r + s) values from OpenSSL's DER formatted signature. (pyopenssl folder has 2 examples - use the one with `REAL suffix` for a quick test).
