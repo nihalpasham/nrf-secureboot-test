@@ -4,9 +4,10 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    // Tell cargo to tell rustc to link the static object file - nrf_cc310_bl_0.9.12 
+    // Tell cargo to tell rustc to link the static object file - nrf_cc310_bl_0.9.12
     // shared library.
-    println!("cargo:rustc-link-search={}","/Users/Nil/devspace/rust/projects/nrf52-rust/nrf-rust-bootloaders/nrf52840-secure-test-bootloader");
+    // /Users/Nil/devspace/rust/projects/nrf52-rust/nrf-secureboot-test/nrf-rust-bootloaders/nrf52840-secure-test-bootloader
+    println!("cargo:rustc-link-search={}","C:/Users/Nil/devspace/rust/projects/nrf52-rust/nrf-secureboot-test/nrf-rust-bootloaders/nrf52840-secure-test-bootloader");
     println!("cargo:rustc-link-lib=static=nrf_cc310_bl_0.9.12");
 
     // Tell cargo to invalidate the built crate whenever the wrapper changes
@@ -28,12 +29,11 @@ fn main() {
         .use_core();
 
     eprintln!(
-            "please run bindgen --output src/bindings.rs {}",
-            bb.command_line_flags().join(" ")
-        );     
-        // Finish the builder and generate the bindings. Unwrap the Result and panic on failure.
-    let bindings = bb.generate().expect("Unable to generate bindings");   
-        
+        "please run bindgen --output src/bindings.rs {}",
+        bb.command_line_flags().join(" ")
+    );
+    // Finish the builder and generate the bindings. Unwrap the Result and panic on failure.
+    let bindings = bb.generate().expect("Unable to generate bindings");
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = PathBuf::from("src");

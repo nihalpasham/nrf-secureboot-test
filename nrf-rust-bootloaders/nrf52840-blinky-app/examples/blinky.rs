@@ -1,5 +1,6 @@
 #![no_main]
 #![no_std]
+#![allow(warnings)]
 
 extern crate panic_halt;
 extern crate nrf52840_hal as hal;
